@@ -5,19 +5,10 @@ import NewBook from './NewBook';
 export default class BookList extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			books: this.props.store.getState()
-		};
-
-		this.props.store.subscribe(() => {
-			this.setState({
-				books: this.props.store.getState()
-			});
-		});
 	}
 
 	render() {
-		let bookElements = this.state.books.map((book) => {
+		let bookElements = this.props.books.map((book) => {
 			return (<Book key={book.id} book={book} />);
 		});
 

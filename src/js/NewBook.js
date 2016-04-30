@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { addBook } from './actions'
 
-export default class NewBook extends React.Component {
+class NewBook extends React.Component {
 	constructor(props) {
 		super(props);
 		this.addBook = this.addBook.bind(this);
@@ -33,11 +35,7 @@ export default class NewBook extends React.Component {
 			authorFirst: this.state.authorFirst, 
 			authorLast: this.state.authorLast
 		};
-
-		this.props.store.dispatch({
-			type: 'ADD_BOOK',
-			book: book
-		})
+		this.props.dispatch(addBook(book))
 	}
 
   render() {
@@ -59,3 +57,6 @@ export default class NewBook extends React.Component {
     );
   }
 }
+
+NewBook = connect()(NewBook)
+export default NewBook

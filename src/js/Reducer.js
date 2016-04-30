@@ -1,3 +1,5 @@
+import { ADD_BOOK } from './actionTypes'
+
 module.exports = {
   reducer: function (state, action) {
   	if (state === undefined) {
@@ -8,8 +10,8 @@ module.exports = {
   	}
 
     switch (action.type) {
-		  case 'ADD_BOOK':
-		  	return state.concat([action.book])
+		  case ADD_BOOK:
+				return [...state, action.book]
 		  default:
 		    return state
 		}

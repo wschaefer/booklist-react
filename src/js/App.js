@@ -1,5 +1,5 @@
 import React from 'react';
-import BookList from './BookList';
+import ContainerBookList from './ContainerBookList';
 import { createStore } from 'redux';
 import { reducer } from './Reducer'
 
@@ -9,6 +9,6 @@ export default class App extends React.Component {
 		this.store = createStore(reducer);
 	}
   render() {
-    return <BookList store={this.store} />;
+    return <ContainerBookList store={this.store} />;
   }
 }
