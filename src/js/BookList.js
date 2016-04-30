@@ -6,18 +6,14 @@ export default class BookList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: [
-				{id: 0, title: "Norwegian Wood", authorLast: "Murakami", authorFirst: "Haruki"},
-				{id: 1, title: "French Lieutenant's Woman", authorLast: "Fowles", authorFirst: "John"}
-			]
+			books: this.props.store.getState()
 		};
-		this.addBook = this.addBook.bind(this);
-	}
 
-	addBook(book) {
-		let books = this.state.books;
-		books.push(book);
-		this.setState({books: books});
+		this.props.store.subscribe(() => {
+			this.setState({
+				books: this.props.store.getState()
+			});
+		});
 	}
 
 	render() {
@@ -28,7 +24,7 @@ export default class BookList extends React.Component {
 	    return (
 	    	<div>
 	    		<h1>Books</h1>
-	    		<NewBook addBook={this.addBook} />
+					<NewBook store={this.props.store} />
 	    		{bookElements}
 	    	</div>
 	    );

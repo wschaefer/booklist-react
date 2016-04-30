@@ -31,8 +31,13 @@ export default class NewBook extends React.Component {
 			id: 2, 
 			title: this.state.title, 
 			authorFirst: this.state.authorFirst, 
-			authorLast: this.state.authorLast};
-		this.props.addBook(book);
+			authorLast: this.state.authorLast
+		};
+
+		this.props.store.dispatch({
+			type: 'ADD_BOOK',
+			book: book
+		})
 	}
 
   render() {
