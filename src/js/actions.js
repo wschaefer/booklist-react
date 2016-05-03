@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import { 
   REQUEST_BOOKS, RECEIVE_BOOKS,
-  REQUEST_CREATE_BOOK, RECEIVE_CREATED_BOOK 
+  REQUEST_CREATE_BOOK, RECEIVE_CREATED_BOOK,
+  SET_VISIBILITY_FILTER
 } from './actionTypes'
 
 function requestBooks() {
@@ -54,4 +55,8 @@ export function createBook(book) {
       .then(response => response.json())
       .then(json => dispatch(receiveCreatedBook(json)))
   }
+}
+
+export function setVisibilityFilter(filter) {
+  return { type: SET_VISIBILITY_FILTER, filter: filter }
 }
