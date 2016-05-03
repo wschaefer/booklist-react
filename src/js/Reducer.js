@@ -1,16 +1,15 @@
-import { ADD_BOOK } from './actionTypes'
+import { RECEIVE_CREATED_BOOK, RECEIVE_BOOKS } from './actionTypes'
 
 module.exports = {
   reducer: function (state, action) {
   	if (state === undefined) {
-  		return [
-				{id: 0, title: "Norwegian Wood", authorLast: "Murakami", authorFirst: "Haruki"},
-				{id: 1, title: "French Lieutenant's Woman", authorLast: "Fowles", authorFirst: "John"}
-			];
+			return [];
   	}
 
     switch (action.type) {
-		  case ADD_BOOK:
+			case RECEIVE_BOOKS:
+				return action.books;
+		  case RECEIVE_CREATED_BOOK:
 				return [...state, action.book]
 		  default:
 		    return state

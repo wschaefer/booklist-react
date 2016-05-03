@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { addBook } from './actions'
+import { createBook } from './actions'
 
 class NewBook extends React.Component {
 	constructor(props) {
 		super(props);
-		this.addBook = this.addBook.bind(this);
+		this.createBook = this.createBook.bind(this);
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.onAuthorFirstChange = this.onAuthorFirstChange.bind(this);
 		this.onAuthorLastChange = this.onAuthorLastChange.bind(this);
 		this.state = {
 			title: '',
-			authorFirst: '',
-			authorLast: ''
+			author_first: '',
+			author_last: ''
 		}
 	}
 
@@ -21,21 +21,21 @@ class NewBook extends React.Component {
 	}
 
 	onAuthorFirstChange(e) {
-		this.setState({authorFirst: e.target.value})
+		this.setState({author_first: e.target.value})
 	}
 
 	onAuthorLastChange(e) {
-		this.setState({authorLast: e.target.value})
+		this.setState({author_last: e.target.value})
 	}
 
-	addBook() {
+	createBook() {
 		let book = {
 			id: 2, 
 			title: this.state.title, 
-			authorFirst: this.state.authorFirst, 
-			authorLast: this.state.authorLast
+			author_first: this.state.author_first,
+			author_last: this.state.author_last
 		};
-		this.props.dispatch(addBook(book))
+		this.props.dispatch(createBook(book))
 	}
 
   render() {
@@ -52,7 +52,7 @@ class NewBook extends React.Component {
     		<label>Author Last Name</label>
     		<input type="text" onChange={this.onAuthorLastChange}></input>
 
-    		<button onClick={this.addBook}>Add Book</button>
+        <button onClick={this.createBook}>Add Book</button>
     	</div>
     );
   }

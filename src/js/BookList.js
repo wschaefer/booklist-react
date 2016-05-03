@@ -7,6 +7,10 @@ export default class BookList extends React.Component {
 		super(props);
 	}
 
+	componentDidMount() {
+	  this.props.fetchBooks()
+	}
+
 	render() {
 		let bookElements = this.props.books.map((book) => {
 			return (<Book key={book.id} book={book} />);

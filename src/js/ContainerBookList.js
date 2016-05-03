@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import BookList from './BookList'
+import { fetchBooks } from './actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -7,13 +8,17 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchBooks: () => {
+      dispatch(fetchBooks())
+    }
+  }
+}
+
 const ContainerBookList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(BookList)
-
-const mapDispatchToProps = (dispatch) => {
-  return {  }
-}
 
 export default ContainerBookList
