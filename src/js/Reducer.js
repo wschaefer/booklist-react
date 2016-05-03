@@ -6,23 +6,31 @@ const initialState = {
   books: []
 }
 
+function books(state = [], action) {
+	switch (action.type) {
+		case RECEIVE_BOOKS:
+		  return action.books
+	  case RECEIVE_CREATED_BOOK:
+      return [...state, action.book]
+    default:
+      return state
+	}
+}
+
+function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
 module.exports = {
   reducer: function (state = initialState, action) {
-    switch (action.type) {
-			case RECEIVE_BOOKS:
-			  return Object.assign({}, state, {
-	        books: action.books
-	      })
-		  case RECEIVE_CREATED_BOOK:
-        return Object.assign({}, state, {
-	        books: [...state.books, action.book]
-	      })
-			case SET_VISIBILITY_FILTER:
-				return Object.assign({}, state, {
-	        visibilityFilter: action.filter
-	      })
-		  default:
-		    return state
-		}
-  },
+    return {
+	    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+	    books: books(state.books, action)
+	  }
+  }
 }
