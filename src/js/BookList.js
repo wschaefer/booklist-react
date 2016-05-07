@@ -10,6 +10,7 @@ export default class BookList extends React.Component {
 		this.showUnread = this.showUnread.bind(this)
 		this.showRead = this.showRead.bind(this)
 		this.showAll = this.showAll.bind(this)
+		this.markAsRead = this.markAsRead.bind(this)
 	}
 
 	showUnread() {
@@ -24,13 +25,17 @@ export default class BookList extends React.Component {
 		this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL)
 	}
 
+	markAsRead(bookId) {
+		this.props.markAsRead(bookId)
+	}
+
 	componentDidMount() {
 	  this.props.fetchBooks()
 	}
 
 	render() {
 		let bookElements = this.props.books.map((book) => {
-			return (<Book key={book.id} book={book} />);
+			return (<Book key={book.id} book={book} markAsRead={this.markAsRead} />);
 		});
 
 	    return (

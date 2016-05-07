@@ -1,4 +1,4 @@
-import { RECEIVE_CREATED_BOOK, RECEIVE_BOOKS, SET_VISIBILITY_FILTER } from './actionTypes'
+import { RECEIVE_CREATED_BOOK, RECEIVE_BOOKS, SET_VISIBILITY_FILTER, RECEIVE_MARK_AS_READ } from './actionTypes'
 import { VisibilityFilters } from './VisibilityFilters'
 
 const initialState = {
@@ -12,6 +12,15 @@ function books(state = [], action) {
 		  return action.books
 	  case RECEIVE_CREATED_BOOK:
       return [...state, action.book]
+    case RECEIVE_MARK_AS_READ:
+      return state.map((book, index) => {
+        if (book.id === action.bookId) {
+          return Object.assign({}, book, {
+            read: true
+          })
+        }
+        return book
+      })
     default:
       return state
 	}

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import BookList from './BookList'
-import { fetchBooks, setVisibilityFilter } from './actions'
+import { fetchBooks, setVisibilityFilter, markAsRead } from './actions'
 import { VisibilityFilters } from './VisibilityFilters'
 
 const getVisibleBooks = (books, filter) => {
@@ -8,9 +8,9 @@ const getVisibleBooks = (books, filter) => {
     case VisibilityFilters.SHOW_ALL:
       return books
     case VisibilityFilters.SHOW_READ:
-      return books.filter(t => t.read)
+      return books.filter(book => book.read)
     case VisibilityFilters.SHOW_UNREAD:
-      return books.filter(t => !t.read)
+      return books.filter(book => !book.read)
   }
 }
 
@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setVisibilityFilter: (filter) => {
       dispatch(setVisibilityFilter(filter))
+    },
+    markAsRead: (bookId) => {
+      dispatch(markAsRead(bookId))
     }
   }
 }

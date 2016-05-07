@@ -2,7 +2,8 @@ import fetch from 'isomorphic-fetch'
 import { 
   REQUEST_BOOKS, RECEIVE_BOOKS,
   REQUEST_CREATE_BOOK, RECEIVE_CREATED_BOOK,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  REQUEST_MARK_AS_READ, RECEIVE_MARK_AS_READ
 } from './actionTypes'
 
 function requestBooks() {
@@ -59,4 +60,29 @@ export function createBook(book) {
 
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter: filter }
+}
+
+export function requestMarkAsRead(bookId) {
+  return {type: REQUEST_MARK_AS_READ, bookId: bookId}
+}
+
+export function receiveMarkAsRead(bookId) {
+  return {type: RECEIVE_MARK_AS_READ, bookId: bookId}
+}
+
+export function markAsRead(bookId) {
+  return dispatch => {
+    dispatch(requestMarkAsRead(bookId))
+    return fetch(`http://localhost:3000/books/${bookId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({read: true})
+      })
+      .then(response => response.json())
+      .then(json => dispatch(receiveMarkAsRead(bookId)))
+  }
 }
