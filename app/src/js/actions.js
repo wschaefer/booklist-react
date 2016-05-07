@@ -6,6 +6,8 @@ import {
   REQUEST_MARK_AS_READ, RECEIVE_MARK_AS_READ
 } from './actionTypes'
 
+const API_SERVER = "http://booklist-server.cfapps.io";
+
 function requestBooks() {
   return {
     type: REQUEST_BOOKS
@@ -22,7 +24,7 @@ function receiveBooks(json) {
 export function fetchBooks() {
   return dispatch => {
     dispatch(requestBooks())
-    return fetch(`http://localhost:3000/books.json`)
+    return fetch(`${API_SERVER}/books.json`)
       .then(response => response.json())
       .then(json => dispatch(receiveBooks(json)))
   }
@@ -44,7 +46,7 @@ function receiveCreatedBook(json) {
 export function createBook(book) {
   return dispatch => {
     dispatch(requestCreateBook(book))
-    return fetch(`http://localhost:3000/books`,
+    return fetch(`${API_SERVER}/books`,
       {
         method: 'POST',
         headers: {
@@ -73,7 +75,7 @@ export function receiveMarkAsRead(bookId) {
 export function markAsRead(bookId) {
   return dispatch => {
     dispatch(requestMarkAsRead(bookId))
-    return fetch(`http://localhost:3000/books/${bookId}`,
+    return fetch(`${API_SERVER}/books/${bookId}`,
       {
         method: 'PUT',
         headers: {
