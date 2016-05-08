@@ -39,13 +39,14 @@ export default class BookList extends React.Component {
 		});
 
 	    return (
-	    	<div>
+	    	<div style={{'margin-left': 'auto', 'margin-right': 'auto', 'max-width': '768px'}}>
 	    		<h1>Books</h1>
-					<NewBook store={this.props.store} />
 	    		{bookElements}
           <button onClick={this.showUnread}>Show Unread</button>
           <button onClick={this.showRead}>Show Read</button>
           <button onClick={this.showAll}>Show All</button>
+
+					<NewBook store={this.props.store} />
 	    	</div>
 	    );
  	}

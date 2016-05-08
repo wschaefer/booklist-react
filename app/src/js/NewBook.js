@@ -43,16 +43,19 @@ class NewBook extends React.Component {
     	<div>
     		<h2>New Book</h2>
 
-    		<label>Title</label>
-    		<input type="text" onChange={this.onTitleChange}></input>
+    		<form className="pure-form pure-form-stacked">
 
-    		<label>Author First Name</label>
-    		<input type="text" onChange={this.onAuthorFirstChange}></input>
+	    		<label>Author Last Name</label>
+	    		<input type="text" onChange={this.onAuthorLastChange}></input>
 
-    		<label>Author Last Name</label>
-    		<input type="text" onChange={this.onAuthorLastChange}></input>
+	    		<label>Author First Name</label>
+	    		<input type="text" onChange={this.onAuthorFirstChange}></input>
 
-        <button onClick={this.createBook}>Add Book</button>
+	    		<label>Title</label>
+	    		<input type="text" onChange={this.onTitleChange}></input>
+
+	        <button onClick={this.createBook}>Add Book</button>
+	      </form>
     	</div>
     );
   }
