@@ -28,7 +28,8 @@ class NewBook extends React.Component {
 		this.setState({author_last: e.target.value})
 	}
 
-	createBook() {
+	createBook(e) {
+		e.preventDefault();
 		let book = {
 			id: 2, 
 			title: this.state.title, 
@@ -36,6 +37,10 @@ class NewBook extends React.Component {
 			author_last: this.state.author_last
 		};
 		this.props.dispatch(createBook(book))
+
+		this.setState({title: ""})
+		this.setState({author_first: ""})
+		this.setState({author_last: ""})
 	}
 
   render() {
@@ -46,13 +51,13 @@ class NewBook extends React.Component {
     		<form className="pure-form pure-form-stacked">
 
 	    		<label>Author Last Name</label>
-	    		<input type="text" onChange={this.onAuthorLastChange}></input>
+	    		<input type="text" value={this.state.author_last} onChange={this.onAuthorLastChange}></input>
 
 	    		<label>Author First Name</label>
-	    		<input type="text" onChange={this.onAuthorFirstChange}></input>
+	    		<input type="text" value={this.state.author_first} onChange={this.onAuthorFirstChange}></input>
 
 	    		<label>Title</label>
-	    		<input type="text" onChange={this.onTitleChange}></input>
+	    		<input type="text" value={this.state.title} onChange={this.onTitleChange}></input>
 
 	        <button onClick={this.createBook}>Add Book</button>
 	      </form>

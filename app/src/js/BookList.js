@@ -39,7 +39,7 @@ export default class BookList extends React.Component {
 		});
 
 	    return (
-	    	<div style={{'margin-left': 'auto', 'margin-right': 'auto', 'max-width': '768px'}}>
+	    	<div style={{marginLeft: 'auto', marginRight: 'auto', maxWidth: '768px'}}>
 	    		<h1>Books</h1>
 	    		{bookElements}
           <button onClick={this.showUnread}>Show Unread</button>
